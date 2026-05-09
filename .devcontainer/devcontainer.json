@@ -1,0 +1,10 @@
+{
+    "name": "Hackatime Setup",
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "WakaTime.vscode-wakatime"
+            ]
+        }
+    }
+}

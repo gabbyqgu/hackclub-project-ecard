@@ -1,0 +1,37 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  background: linear-gradient(180deg, rgb(224, 117, 117), rgb(255, 255, 208));
+}
+
+.petal {
+  position: fixed;
+  top: -60px;
+  animation: fall linear 5s infinite;
+  pointer-events: none;
+  z-index: 5;
+}
+
+@keyframes fall {
+  0% {
+    transform: translateX(0) rotate(0deg);
+    opacity: 0.8;
+  }
+  50% {
+    transform: translateX(50vh) translateY(50vh) rotate(180deg) scale(20);
+    opacity: 0.6;
+  }
+  100% {
+    transform: translateY(110vh) rotate(360deg);
+    opacity: 0;
+  }
+}
