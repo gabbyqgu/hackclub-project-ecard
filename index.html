@@ -3,14 +3,66 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Birthday Cake Creator</title>
+    <title>Mother's Day Ecard</title>
     <link rel="stylesheet" href="style.css" />
   </head>
+
   <body>
     <audio id="bg-music" loop>
       <source src="background-music-puth.mp3" />
     </audio>
 
-    <div class="petal">🌸</div>
+    <!-- Falling petals -->
+    <div id="petals-container"></div>
+
+    <!-- =====SCENE envelope======================================== -->
+    <div id="scene-envelope" class="scene active">
+      <div id="envelope-wrap">
+        <div id="envelope">
+          <div id="flap"></div>
+          <div id="seal">❤️</div>
+        </div>
+        <button id="open-btn" onclick="openEnvelope()">Open Me 💌</button>
+      </div>
+    </div>
+
+    <!-- ====SCENE spotlight — one line at a time=================== -->
+    <div id="scene-spotlight" class="scene">
+      <div id="spotlight-wrap">
+        <div id="spotlight-line"></div>
+        <div id="progress-dots"></div>
+      </div>
+    </div>
+
+    <!-- ====SCENE letter======================================= -->
+    <div id="scene-letter" class="scene">
+      <div id="letter-wrap">
+        <div id="letter-header">💐 For Mom 💐</div>
+        <div id="letter-scroll-area">
+          <div id="letter-lines"></div>
+          <div id="letter-signature">
+            <span id="sig-love">Love,</span>
+            <span id="sig-name">Gabby! 💕</span>
+            <span id="sig-date">Mother's Day, 2026</span>
+          </div>
+        </div>
+        <button id="finish-btn" onclick="showFinal()">
+          Close the letter 💝
+        </button>
+      </div>
+    </div>
+
+    <!-- ====SCENE final message======================================= -->
+    <div id="scene-final" class="scene">
+      <div id="final-message">
+        <div id="big-smile">😊</div>
+        <h1 id="final-text">Happy Mother's Day!!</h1>
+        <p id="final-sub">I love you to the moon and back 🌙🫶</p>
+        <p id="final-name">— Gabby 💗</p>
+        <button id="replay-btn" onclick="replayAll()">🔁 Watch again</button>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
   </body>
 </html>

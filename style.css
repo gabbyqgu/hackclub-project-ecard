@@ -1,37 +1,61 @@
+/* global settings */
+:root {
+  --pink:#F2A6BE; 
+  --dark-pink: #E75F8A;
+
+
+}
+/* applies to everything on page */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
-
+/* fills page */
 html,
-body {
+body { 
   height: 100%;
 }
 
 body {
-  background: linear-gradient(180deg, rgb(224, 117, 117), rgb(255, 255, 208));
+  background: radial-gradient(rgb(255, 233, 233) 30%, #F2A6BE);
+  display: flex; 
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
 }
+
 
 .petal {
   position: fixed;
-  top: -60px;
-  animation: fall linear 5s infinite;
+  top: -190px;
+  animation: fall linear infinite;
+  opacity: 0.7;
   pointer-events: none;
-  z-index: 5;
-}
+  z-index: 0;
+} 
 
 @keyframes fall {
   0% {
-    transform: translateX(0) rotate(0deg);
+    transform: translateY(0) rotate(0deg);
     opacity: 0.8;
   }
   50% {
-    transform: translateX(50vh) translateY(50vh) rotate(180deg) scale(20);
+    transform: translateY(50vh) rotate(180deg);
     opacity: 0.6;
   }
   100% {
     transform: translateY(110vh) rotate(360deg);
     opacity: 0;
   }
+}
+
+/* ========= SCENE SWITCHES ========== */
+.scene {
+  opacity: 0;
+}
+
+.scene.active {
+  opacity: 100;
 }
