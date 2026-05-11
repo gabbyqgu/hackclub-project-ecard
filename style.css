@@ -26,7 +26,7 @@ body {
   position: relative;
 }
 
-
+/* =============== PETALS ===============*/
 .petal {
   position: fixed;
   top: -190px;
@@ -51,7 +51,7 @@ body {
   }
 }
 
-/* ========= SCENE SWITCHES ========== */
+/* ========== SCENE SWITCHES =========== */
 .scene {
   opacity: 0;
 }
@@ -59,3 +59,55 @@ body {
 .scene.active {
   opacity: 100;
 }
+
+/* ========= SCENE -- ENVELOPE ========== */
+#envelope-wrap {  /* wrapper includes envelope + button */
+  display: flex;
+  flex-direction: column; /* vertical stacking */
+  align-items: center;
+  gap: 40px;
+  animation: updown 3s ease-in-out infinite;
+}
+
+@keyframes updown {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+#envelope {
+  position: relative;
+  width: 260px; 
+  height: 180px;
+  background:rgb(255, 253, 246);
+  border-radius: 8px;
+  box-shadow: 0 0px 40px rgb(221, 180, 183); 
+}
+
+#flap {
+  position: absolute; /* relative to parent(envelope) */
+  top: 0;
+  left: 0;  /* aligning w/ top left */
+  width: 0;
+  height: 0;
+  border-left: 130px solid transparent;
+  border-right: 130px solid transparent;
+  border-top: 100px solid #F2A6BE; 
+}
+
+#seal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100px;
+  height: 100px;
+  transform: translate(-50%, -30%);
+  transition: transform 0.3s ease;
+}
+envelope.open {
+  transform: rotateX(180deg);
+} 

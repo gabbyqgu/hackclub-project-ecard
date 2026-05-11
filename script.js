@@ -1,6 +1,8 @@
 // music controls!!
 const music = document.getElementById("bg-music");
-let fadeInterval;
+function startMusic() {
+
+}
 
 const letterLines = [
   "Dear mom... :) ",
@@ -23,7 +25,19 @@ function switchScene(hideID, showID) {
 function openEnvelope() {
   startMusic();
   
+  const envelope = document.getElementById("envelope");
+  const openBtn = document.getElementById("open-btn");
+
+  envelope.classList.add("open");
+  openBtn.disabled = true; /* disables button */
+  openBtn.textContent = "opening...";
+
+  createPetals();
+
+  setTimeout(startSpotlight, 1600); /* waits 1.6s b4 next scene */
 }
+
+
 /* ============== SCENE -- SPOTLIGHT!! =================== */
 /* how long each spotlight line stays visible(in miliseconds) */
 const line_hold_time = 2800;
@@ -36,8 +50,18 @@ let currentLineIndex = 0;
 /* stores a timer */
 let lineTimer = null;
 
+function startSpotlight() {
+  currentLineIndex = 0;
+  switchScene("scene-envelope", "scene-spotlight")
 
+  buildProgressDots();
+}
 
+function buildProgressDots() {
+  const container = document.getElementById("progress-dots");
+  container.innerHTML = "";
+
+}
 /* ========  FALLING PETALS =================================== */
 const petalEmojis = [
   "🌸", "🌺", "🌷", "🌹", "✨", "🌻", "🌼", "🪻"
@@ -57,4 +81,3 @@ function createPetals() {
     container.appendChild(petal);
   }
 } 
-createPetals();
