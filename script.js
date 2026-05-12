@@ -50,11 +50,33 @@ let currentLineIndex = 0;
 /* stores a timer */
 let lineTimer = null;
 
+/* ========== FROGGY ANIMATION ======== */
+const frogFrames = [
+  "frogrest-1.png",
+  "frogrest-2.png",
+  "frogsmile-1.png",
+  "frogsmile-2.png"
+];
+
+let frogIndex = 0;
+let frogInterval;
+
 function startSpotlight() {
   currentLineIndex = 0;
-  switchScene("scene-envelope", "scene-spotlight")
+  switchScene("scene-envelope", "scene-final");
+  frogIndex = 0;
+  const frog = document.getElementById("frog");
+  frogInterval = setInterval(function () {
+    frog.src = frogFrames[frogIndex];
 
-  buildProgressDots();
+    frogIndex++;
+
+    if (frogIndex >= frogFrames.length) {
+      frogIndex = 0; // loop animation
+    }
+  }, 500); // speed (lower = faster)
+
+  document.getElementById("replay-btn").style.animationDelay = "1.4s";
 }
 
 function buildProgressDots() {

@@ -1,10 +1,17 @@
 /* global settings */
 :root {
   --pink:#F2A6BE; 
-  --dark-pink: #E75F8A;
-
+  --dark-pink: #c74d74;
+  --shadow: rgba(199, 146, 150);
 
 }
+@font-face {
+  font-family: "Muthiara";
+  src: url("Muthiara.otf");
+  /*font-family: "Hello Honey";
+  src: url("hello-honey.otf"); */
+}
+
 /* applies to everything on page */
 * {
   margin: 0;
@@ -18,7 +25,7 @@ body {
 }
 
 body {
-  background: radial-gradient(rgb(255, 233, 233) 30%, #F2A6BE);
+  background: radial-gradient(rgb(255, 233, 233) 30%, var(--pink));
   display: flex; 
   align-items: center;
   justify-content: center;
@@ -85,7 +92,7 @@ body {
   height: 180px;
   background:rgb(255, 253, 246);
   border-radius: 8px;
-  box-shadow: 0 0px 40px rgb(221, 180, 183); 
+  box-shadow: 0 0px 30px var(--shadow); 
 }
 
 #flap {
@@ -97,6 +104,7 @@ body {
   border-left: 130px solid transparent;
   border-right: 130px solid transparent;
   border-top: 100px solid #F2A6BE; 
+  filter: drop-shadow(0 0 5px var(--shadow));
 }
 
 #seal {
@@ -105,9 +113,57 @@ body {
   left: 50%;
   width: 100px;
   height: 100px;
+  image-rendering: pixelated;
   transform: translate(-50%, -30%);
   transition: transform 0.3s ease;
+}
+
+#seal:hover {
+  transform: translate(-50%, -30%) scale(1.1);
+}
+
+button {
+  font-family:'Courier New', Courier, monospace;
+  background: linear-gradient(to right, #b31134, #d65a79);
+  color: white;
+  border-radius: 30px;
+  padding: 10px 18px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  border: none;
+  box-shadow: 0 0 24px var(--shadow);
+  transition: transform 0.25s ease, box-shadow 0.15s ease;
+  
+}
+button:hover {
+  transform: scale(1.08);
 }
 envelope.open {
   transform: rotateX(180deg);
 } 
+
+#final-text {
+  font-family: "Muthiara", "Hello Honey", cursive;
+  font-size: 4rem; 
+  letter-spacing: 3.5px;
+  background: linear-gradient(to bottom, var(--pink), var(--dark-pink));
+  /* clips the bg to text shape */
+  -webkit-background-clip: text;
+  background-clip: text;
+  /* original text color transparent */
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  transition: transform 0.15s ease-in-out;
+}
+
+#final-text:hover {
+  cursor: default;
+  transform: scale(1.1);
+}
+
+#frog {
+  image-rendering: pixelated;
+  width: 250px;  
+  display: block;
+  margin: 0 auto;
+}
