@@ -1,10 +1,4 @@
-// music controls!!
-const music = document.getElementById("bg-music");
-function startMusic() {
-
-}
-
-const letterLines = [
+const letter = [ // the actual letter! :OO 
   "Dear mom... :) ",
   "happy mother's day!!!😛💗",
   "you are so awesome and amazing :D",
@@ -15,15 +9,15 @@ const letterLines = [
   "I love you so sooooooooo much!! 💖🥹🥹🤗🫶",
   "you're my favorite person EVERRRR 🌸🫶",
 ];
+
 /* ============== global function: switchs scenes =========== */
 function switchScene(hideID, showID) {
   document.getElementById(hideID).classList.remove("active");
   document.getElementById(showID).classList.add("active");
 }
 
-/* ============== SCENE -- ENVELOPE =================== */
+/* ============== SCENE 1 -- ENVELOPE =================== */
 function openEnvelope() {
-  startMusic();
   
   const envelope = document.getElementById("envelope");
   const openBtn = document.getElementById("open-btn");
@@ -34,11 +28,11 @@ function openEnvelope() {
 
   createPetals();
 
-  setTimeout(startSpotlight, 1600); /* waits 1.6s b4 next scene */
+  setTimeout(startSpotlight, 2500); /* waits 2.5s b4 next scene */
 }
 
 
-/* ============== SCENE -- SPOTLIGHT!! =================== */
+/* ============== SCENE 2 -- SPOTLIGHT!! =================== */
 /* how long each spotlight line stays visible(in miliseconds) */
 const line_hold_time = 2800;
 /* how fast each line fades out */
@@ -50,8 +44,45 @@ let currentLineIndex = 0;
 /* stores a timer */
 let lineTimer = null;
 
-/* ========== FROGGY ANIMATION ======== */
-const frogFrames = [
+function startSpotlight() {
+  currentLineIndex = 0;
+  switchScene("scene-envelope", "scene-spotlight");
+  ProgressDots();
+}
+
+function ProgressDots() {
+  const container = document.getElementById("progress-dots")
+  container.innerHTML = ""; //resets # of dots
+  for (let i = 0; i < letter.length; i++) { //keep going while i < # of lines + inc by 1 every loop
+    const dot = document.createElement("div"); 
+    dot.classList.add("dot"); 
+    dot.id = "dot-" + i;
+    container.appendChild(dot); 
+  }
+}
+
+function showLine(i) {
+  if (i >= letter.length) { //did we show all the lines? yay or nay
+    lineTimer = setTimeout(fullLetter, 800); //wait b4 showing full letter
+    return
+  }
+}
+
+currentLineIndex = i;
+
+
+/* =============== SCENE 4 - final ================ */ 
+function replayAll() {
+  document.getElementById("petals-container").innerHTML = ""; /* wipes out all the flowers :( */
+  // resetting the envelope
+  document.getElementById("envelope").classList.remove("open");
+  const openBtn = document.getElementById("open-btn");
+  openBtn.disabled = false;
+  openBtn.textContent = "Open Me 💌"
+  switchScene("scene-final", "scene-envelope"); /* goes back to home screen */
+}
+/* ========== FROGGY ANIMATION :P ============ */
+/* const frogFrames = [
   "frogrest-1.png",
   "frogrest-2.png",
   "frogsmile-1.png",
@@ -61,9 +92,6 @@ const frogFrames = [
 let frogIndex = 0;
 let frogInterval;
 
-function startSpotlight() {
-  currentLineIndex = 0;
-  switchScene("scene-envelope", "scene-final");
   frogIndex = 0;
   const frog = document.getElementById("frog");
   frogInterval = setInterval(function () {
@@ -72,19 +100,15 @@ function startSpotlight() {
     frogIndex++;
 
     if (frogIndex >= frogFrames.length) {
-      frogIndex = 0; // loop animation
+      frogIndex = 0; // froggy loop animation
     }
-  }, 500); // speed (lower = faster)
+  }, 700); // speed (lower = faster) */
 
-  document.getElementById("replay-btn").style.animationDelay = "1.4s";
-}
+  document.getElementById("replay-btn").style.animationDelay = "1.4s"; 
 
-function buildProgressDots() {
-  const container = document.getElementById("progress-dots");
-  container.innerHTML = "";
 
-}
-/* ========  FALLING PETALS =================================== */
+
+/* ==============  FALLING PETALS oh la la =================== */
 const petalEmojis = [
   "🌸", "🌺", "🌷", "🌹", "✨", "🌻", "🌼", "🪻"
 ];
