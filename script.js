@@ -1,13 +1,13 @@
 const letter = [ // the actual letter! :OO 
-  "Dear mom... :) ",
+  "Dear mom... :) ", /*
   "happy mother's day!!!😛💗",
-  "you are so awesome and amazing :D",
+  "you are so awesome and amazing :D", 
   "thank you for always making me yummy food and giving me chocolate and snacks 😋🍫",
   "and thank you for always walking sugar for me 😅",
   "i really appreciate you reminding me to putt like everyday 😒",
   "thank you so much for putting up with me and harry's(and dad!) stupid shenanigans",
   "I love you so sooooooooo much!! 💖🥹🥹🤗🫶",
-  "you're my favorite person EVERRRR 🌸🫶",
+  "you're my favorite person EVERRRR 🌸🫶", */
 ];
 
 /* ============== global function: switchs scenes =========== */
@@ -33,12 +33,10 @@ function openEnvelope() {
 
 
 /* ============== SCENE 2 -- SPOTLIGHT!! =================== */
-/* how long each spotlight line stays visible(in miliseconds) */
-const line_hold_time = 2800;
 /* how fast each line fades out */
 const exit_duration = 500; 
 /* how fast each line fades in */
-const enter_duration = 600;
+const enter_duration = 500;
 /* keeps track what line we are on */
 let currentLineIndex = 0;
 /* stores a timer */
@@ -48,10 +46,11 @@ function startSpotlight() {
   currentLineIndex = 0;
   switchScene("scene-envelope", "scene-spotlight");
   ProgressDots();
+  showLine(0);
 }
 
 function ProgressDots() {
-  const container = document.getElementById("progress-dots")
+  const container = document.getElementById("progress-dots");
   container.innerHTML = ""; //resets # of dots
   for (let i = 0; i < letter.length; i++) { //keep going while i < # of lines + inc by 1 every loop
     const dot = document.createElement("div"); 
@@ -63,15 +62,41 @@ function ProgressDots() {
 
 function showLine(i) {
   if (i >= letter.length) { //did we show all the lines? yay or nay
-    lineTimer = setTimeout(fullLetter, 800); //wait b4 showing full letter
-    return
+    lineTimer = setTimeout(showFullLetter, 800); //wait b4 showing full letter
+    return;
   }
+  currentLineIndex = i; 
+  const spotlightLine = document.getElementById("spotlight-line");
+  spotlightLine.textContent = letter[i]; //line # 
+  document.getElementById("dot-" + i).classList.add("filled");
+  setTimeout(function () {
+  showLine(i + 1);
+}, 2800); //each line is visible for 2.8s
+
 }
 
-currentLineIndex = i;
-
+/* ========= SCENE 3 - FULL LETTER :0 ============= */
+function showFullLetter() {
+  switchScene("scene-spotlight", "scene-letter");
+  const container = document.getElementById("letter-lines");
+  container.innerHTML = ""; //empty it first 
+  for (let i = 0; i < letter.length; i++) { //start @ line 0, add 1 while i < # of lines
+    const p = document.createElement("p");
+    p.classList.add("letter-line");
+    p.textContent = letter[i];
+    p.style.animationDelay = i * 200 + "ms"; //lowk super cool waterfall effect
+    container.appendChild(p); //baby child
+  }
+  //signature time
+  const sigDelay = letter.length * 200 + 550; 
+  document.getElementById("letter-signature").style.animationDelay = 
+    sigDelay + "ms";
+}
 
 /* =============== SCENE 4 - final ================ */ 
+function showFinal() { //called from html on click
+  switchScene("scene-letter", "scene-final");
+}
 function replayAll() {
   document.getElementById("petals-container").innerHTML = ""; /* wipes out all the flowers :( */
   // resetting the envelope
@@ -82,7 +107,7 @@ function replayAll() {
   switchScene("scene-final", "scene-envelope"); /* goes back to home screen */
 }
 /* ========== FROGGY ANIMATION :P ============ */
-/* const frogFrames = [
+const frogFrames = [
   "frogrest-1.png",
   "frogrest-2.png",
   "frogsmile-1.png",
@@ -102,7 +127,7 @@ let frogInterval;
     if (frogIndex >= frogFrames.length) {
       frogIndex = 0; // froggy loop animation
     }
-  }, 700); // speed (lower = faster) */
+  }, 700); // speed (lower = faster) 
 
   document.getElementById("replay-btn").style.animationDelay = "1.4s"; 
 
