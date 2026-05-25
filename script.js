@@ -1,5 +1,5 @@
 const letter = [ // the actual letter! :OO 
-  "Dear mom... :) ", /*
+  "Dear mom... :) ", 
   "happy mother's day!!!😛💗",
   "you are so awesome and amazing :D", 
   "thank you for always making me yummy food and giving me chocolate and snacks 😋🍫",
@@ -7,7 +7,7 @@ const letter = [ // the actual letter! :OO
   "i really appreciate you reminding me to putt like everyday 😒",
   "thank you so much for putting up with me and harry's(and dad!) stupid shenanigans",
   "I love you so sooooooooo much!! 💖🥹🥹🤗🫶",
-  "you're my favorite person EVERRRR 🌸🫶", */
+  "you're my favorite person EVERRRR 🌸🫶", 
 ];
 
 /* ============== global function: switchs scenes =========== */
